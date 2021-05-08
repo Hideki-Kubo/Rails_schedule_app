@@ -1,0 +1,36 @@
+<h3>スケジュール詳細</h3>
+
+<table>
+    <tr>
+        <th>スケジュール名</th>
+        <td><%= @schedule.schedule_name %></td>
+    </tr>
+    <tr>
+        <th>開始日</th>
+        <td><%= @schedule.start_date %></td>
+    </tr>
+    <tr>
+        <th>終了日</th>
+        <td><%= @schedule.end_date %></td>
+    </tr>
+    <tr>
+        <th>終日</th>
+        <% if @schedule.allday %>
+        <td>○</td>
+        <% else %>
+        <td></td>
+        <% end %>
+    </tr>
+    <tr>
+        <th>メモ</th>
+        <td><%= @schedule.schedule_memo %></td>
+    </tr>
+</table>
+
+<div>
+    <ul>
+    <li><%= link_to "ユーザー情報一覧に戻る", :schedules %></li>
+    <li><%= link_to "この予定を編集する", edit_schedule_path(@schedule.id) %></li>
+    <li><%= link_to "この予定を削除する", schedule_path(@schedule.id), method: :delete, data: {confirm: "本当に削除しますか？"} %></li>
+    </ul>
+</div>
