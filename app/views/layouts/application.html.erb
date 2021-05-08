@@ -11,6 +11,12 @@
   </head>
 
   <body>
+    <header class="schedule-header">
+      <h1>スケジュール管理アプリ</h1>
+    </header>
     <%= yield %>
+    <footer class="schedule-footer">
+      <h1>残スケジュール数：<%= Schedule.count %></h2>
+    </footer>
   </body>
 </html>

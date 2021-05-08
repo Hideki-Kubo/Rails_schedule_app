@@ -1,0 +1,44 @@
+<h2>スケジュール一覧</h2>
+
+<% if flash.notice %>
+<p class="schedule-notice"><%= flash.notice %></p>
+<% end %>
+
+<table class="schedule-list">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>スケジュール名</th>
+            <th>開始日</th>
+            <th>終了日</th>
+            <th>終日</th>
+            <th>最終更新</th>
+            <th>確認</th>
+            <th>編集</th>
+            <th>削除</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% @schedules.each do |schedule| %>
+            <tr>
+                <td><%= schedule.id %></td>
+                <td><%= schedule.schedule_name %></td>
+                <td><%= l schedule.start_date %></td>
+                <td><%= l schedule.end_date %></td>
+                <!--終日の箇所の出力処理-->
+                <% if schedule.allday %>
+                <td>○</td>
+                <% else %>
+                <td></td>
+                <% end %>
+                <td><%= l schedule.updated_at %></td>
+                <td><%= link_to "詳細確認", schedule_path(schedule.id) %></td>
+                <td><%= link_to "編集", edit_schedule_path(schedule.id) %></td>
+                <td><%= link_to "削除", schedule_path(schedule.id), method: :delete, data: {confirm: "この予定を削除してよろしいですか？"} %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+<p><%= link_to "新規スケジュール作成", :new_schedule %></p>
